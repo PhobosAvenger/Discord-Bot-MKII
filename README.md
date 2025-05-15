@@ -1,7 +1,6 @@
 # Discord Bot MKII
 
-Um bot para Discord desenvolvido em Python 3.10, projetado para ser modular e extensível. Este README fornece instruções sobre como instalar e usar o bot.
-
+Um bot para Discord desenvolvido em Python 3.10, projetado para ser modular e extensível.
 ## Requisitos
 
 - **Python**: Este bot foi desenvolvido utilizando Python 3.10. Certifique-se de ter a versão correta instalada em sua máquina.
