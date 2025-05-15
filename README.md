@@ -1,9 +1,12 @@
+
 # Discord Bot MKII
 
-Um bot para Discord desenvolvido em Python 3.10, projetado para ser modular e extensível.
+Um bot para Discord desenvolvido em Python 3.10, projetado para ser **modular**, **extensível** e com **suporte à inteligência artificial local**.
+
 ## Requisitos
 
-- **Python**: Este bot foi desenvolvido utilizando Python 3.10. Certifique-se de ter a versão correta instalada em sua máquina.
+- **Python**: Este bot foi desenvolvido utilizando Python 3.10. Certifique-se de ter essa versão instalada em sua máquina.
+- **Ollama**: Para uso de LLMs locais, o [Ollama](https://ollama.com) precisa estar instalado e em execução.
 
 ## Instalação
 
@@ -14,63 +17,92 @@ Um bot para Discord desenvolvido em Python 3.10, projetado para ser modular e ex
    ```
 
 2. **Crie um ambiente virtual**
-   É recomendado criar um ambiente virtual para isolar as dependências do seu projeto. Para criar um ambiente virtual chamado `.venv`, execute:
    ```bash
    python -m venv .venv
    ```
 
 3. **Ative o ambiente virtual**
-   - No **Windows**:
+   - **Windows**:
      ```bash
      .venv\Scripts\activate
      ```
-   - No **Linux/Mac**:
+   - **Linux/Mac**:
      ```bash
      source .venv/bin/activate
      ```
 
 4. **Instale as dependências**
-   As dependências necessárias para o bot estão listadas no arquivo `requirements.txt`. Para instalá-las, execute:
    ```bash
    pip install -r requirements.txt
    ```
 
 ## Funcionalidades
 
-- **TTS**: O bot possui funcionalidades básicas de Texto para Fala (TTS) usando `edge_TTS`, permitindo que o bot converse em canais de voz.
-- **Conexão e desconexão**: O bot pode se conectar e desconectar de canais de voz utilizando os comandos:
-  - `!join`: Conecta o bot ao canal de voz onde o comando foi chamado.
+- 🎤 **TTS (Texto para Fala)**: Utiliza `edge_tts` para sintetizar e reproduzir mensagens em canais de voz.
+- 🔊 **Comandos de Voz**:
+  - `!join`: Conecta o bot ao canal de voz atual.
   - `!leave`: Desconecta o bot do canal de voz.
+- 🤖 **Integração com LLM Local (Ollama)**:
+  - O bot responde a menções utilizando um modelo local via [Ollama](https://ollama.com/).
+  - Pode responder em **texto** e também **falar** a resposta se estiver conectado a um canal de voz.
+- 📦 **Arquitetura Modular com Cogs**: Fácil adição de novos comandos e funcionalidades.
 
-- **Integração com IA**: O bot pode se integrar com uma IA local usando `ollama`. Quando um membro menciona o bot (@bot) e faz uma pergunta, ele responde em texto e, se estiver em um canal de voz, reproduz o som da resposta.
+## Integração com Ollama (LLM Local)
+
+Este bot possui integração com LLMs locais através do Ollama, permitindo respostas com linguagem natural diretamente de modelos executados na sua máquina.
+
+### Pré-requisitos
+
+- Baixe e instale o [Ollama](https://ollama.com/download).
+- Execute o modelo desejado, por exemplo:
+  ```bash
+  ollama run llama3
+  ```
+
+### Como funciona
+
+- Ao mencionar o bot com uma pergunta (ex: `@Bot qual é a capital da França?`), ele enviará o texto para o Ollama.
+- A resposta será enviada ao canal como texto.
+- Se o bot estiver em um canal de voz, a resposta também será falada usando TTS.
+
+### Configurações adicionais
+
+Você pode personalizar o modelo do Ollama utilizado e outras opções diretamente no código ou por variáveis de ambiente.
 
 ## Configuração
 
 1. **Arquivo `.env`**
-   O bot requer um token do Discord para funcionar. Um arquivo chamado `.env` será criado automaticamente na pasta do projeto. Edite esse arquivo e insira seu token:
-   ```plaintext
+
+   Um arquivo `.env` será criado automaticamente. Edite-o para adicionar seu token do bot:
+
+   ```env
    TOKEN_API=seu_token_aqui
    ```
 
-   Certifique-se de substituir `seu_token_aqui` pelo token real do seu bot.
+   Substitua `seu_token_aqui` pelo seu token real do Discord.
 
 ## Como Usar
 
-Para iniciar o bot, execute o seguinte comando:
+Para iniciar o bot:
+
 ```bash
 python main.py
 ```
 
-### Estrutura do Projeto
+## Estrutura do Projeto
 
-- **main.py**: O arquivo principal que inicia o bot.
-- **cogs/**: Pasta onde os cogs (módulos) do bot estão armazenados. Você pode adicionar ou modificar funcionalidades aqui.
-- **requirements.txt**: Lista de dependências do Python necessárias para o bot.
+```
+Discord-Bot-MKII/
+├── cogs/                # Módulos separados por função (ex: TTS, LLM, etc)
+├── main.py              # Ponto de entrada principal do bot
+├── requirements.txt     # Lista de dependências
+└── .env                 # Token e variáveis de ambiente (não commitado)
+```
 
 ## Contribuição
 
-Se você gostaria de contribuir para este projeto, sinta-se à vontade para abrir uma *issue* ou criar um *pull request*. Agradecemos qualquer contribuição!
+Sinta-se à vontade para contribuir! Abra uma *issue* para sugestões ou problemas, ou envie um *pull request* com melhorias.
 
 ## Licença
 
-Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
